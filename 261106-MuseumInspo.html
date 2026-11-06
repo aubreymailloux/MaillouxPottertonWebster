@@ -5,7 +5,6 @@
         <link rel="stylesheet" href="./style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
-</head>
 
 <script>
     async function onClickSubmit(){
@@ -19,16 +18,18 @@
         
         // If the image is missing, try again
         if (!jsonData.primaryImage) {
-            console.log(`Object ${randomObjectID} has no image. Retrying...`);
+            console.log(`Object ${RandomObjectID} has no image. Retrying...`);
             return onClickSubmit();
-
+            }
 
         document.getElementById('metImage').src = jsonData.primaryImage;
 
         /* right now the code doesn't know what the available object numbers r, so it is calling nonexistent ones. Need to figure out what the object schema is? or an appropriate range */
     }
-}
+
 </script>
+</head>
+
 <body>
     <h1>Inspiration Starter: The Metropolitan Museum of Art</h1>
     <button type="button" id="submit" onclick="onClickSubmit()">Click Here for Inspiration</button>
