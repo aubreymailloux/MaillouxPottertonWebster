@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>About Page</title>
+        <link rel="stylesheet" href="./style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+</head>
+
+<script>
+    async function onClickSubmit(){
+        const min = 100; const max = 100;
+        var RandomObjectID = Math.floor(Math.random() * (max - min + 1)) + min;
+        const url = `https://collectionapi.metmuseum.org/public/collection/v1.1/objects/${RandomObjectID}`;
+        const response = await fetch(url);
+        if (!response.ok) return onClickSubmit();
+
+        const jsonData = await response.json();
+        
+        // If the image is missing, try again
+        if (!jsonData.primaryImage) {
+            console.log(`Object ${randomObjectID} has no image. Retrying...`);
+            return onClickSubmit();
+
+
+        document.getElementById('metImage').src = jsonData.primaryImage;
+
+        /* right now the code doesn't know what the available object numbers r, so it is calling nonexistent ones. Need to figure out what the object schema is? or an appropriate range */
+    }
+}
+</script>
+<body>
+    <h1>Inspiration Starter: The Metropolitan Museum of Art</h1>
+    <button type="button" id="submit" onclick="onClickSubmit()">Click Here for Inspiration</button>
+    <img id="metImage">
+    <footer>
+        <small>© 2026 Aubrey Mailloux, Dan Potterton, Nolan Webster</small>
+  </footer>
+  </body> 
+</html>
